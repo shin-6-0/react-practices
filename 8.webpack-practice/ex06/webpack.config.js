@@ -6,12 +6,16 @@ module.exports={
   entry: path.resolve('src/index.js'),
   output: {
     path: path.resolve('public'),// 실제 개발 내용이라면  ../backend/src/main/resources/ .. 와 같은 루트일것!
-    filename: 'assets/js/bundle.js'
+    filename: 'assets/js/bundle.js',
+    assetModuleFilename: 'assets/images/[hash][ext]'
   },
   module:{
     rules:[{
-      test: /\.css$/i, //정규표현식 사용. 
-      use:['style-loader','css-loader'],
+      test: /\.(c|sa|sc)ss$/i, //정규표현식 사용. 
+      use:['style-loader','css-loader','sass-loader'],
+    },{
+      test: /\.(png|gif|jp?eg|svg|ico|tiff)/i,//i
+      type: 'asset/resource'
     }]//[{},{},{}...] 이런 식으로 여러가지 설정을 안에 넣어서 설정
   },
   devServer: {

@@ -1,7 +1,7 @@
-ex04: css 모듈 번들링(로더 필요)
+ex05: sass/scss 모듈 번들링
 
 1. 설치 패키지 
-$ npm i -D express webpack webpack-cli webpack-dev-server css-loader style-loader
+$ npm i -D express webpack webpack-cli webpack-dev-server css-loader style-loader sass-loader node-sass
 
 2. 번들링 환경(webpack.config.js) 설정
   1) entry
@@ -13,7 +13,7 @@ $ npm i -D express webpack webpack-cli webpack-dev-server css-loader style-loade
                       use:['style-loader','css-loader'],
                     }]
             }
-
+  
 
 3. 스크립팅
 "scripts"{

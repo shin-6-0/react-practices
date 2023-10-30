@@ -10,8 +10,8 @@ module.exports={
   },
   module:{
     rules:[{
-      test: /\.css$/i, //정규표현식 사용. 
-      use:['style-loader','css-loader'],
+      test: /\.(css|sass|scss)$/i, //정규표현식 사용. 
+      use:['style-loader','css-loader','sass-loader'],
     }]//[{},{},{}...] 이런 식으로 여러가지 설정을 안에 넣어서 설정
   },
   devServer: {
