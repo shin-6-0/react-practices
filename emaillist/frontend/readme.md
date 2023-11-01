@@ -12,9 +12,9 @@
 
 3.  스트립팅
     "scripts": {
-        "debug": "npx webpack serve --progress",
-        "build": "npx webpack"
-    }
+    "debug": "npx webpack serve --config config/webpack.config.js --progress --mode development",
+    "build": "npx webpack --config config/webpack.config.js --mode production"
+}
 
 4.  테스트 서버 실행
     $ npm run debug 
