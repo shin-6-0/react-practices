@@ -1,6 +1,7 @@
 import React from 'react';
 import Incrementor01 from './Incrementor01';
 import Incrementor02 from './Incrementor02';
+import Decrementor01 from './Decrementor01';
 
 export default function () {
     return (
@@ -9,6 +10,8 @@ export default function () {
             <Incrementor01 begin={1} step={1}/>
             <br/>
             <Incrementor02 begin={10} step={10}/>
+            <br/>
+            <Decrementor01 begin={0} step={1}/>
         </>
     );
 }
