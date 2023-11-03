@@ -1,76 +1,24 @@
-import React, { useState } from 'react';
-import './assets/Form.css';
+@charset "utf-8";
 
-export default function Form() {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [validEmail, setValidEmail] = useState(false);
-    const [gender, setGender] = useState('male');
-    const [birthYear, setBirthYear] = useState('');
+*                   { box-sizing: border-box; margin: 0; padding: 0; }
+html, body          { font:0.75em "맑은 고딕", 돋움, 굴림; text-align:center; }
+ul, ol              { list-style-type: none }
 
-    const onChangeName = (e) => {
-        // setName(e.target.value);
-        // 10자 제한
-        setName(e.target.value.substr(0, 10));
-    }
-
-    const onChangeEmail = (e) => {
-        setEmail(e.target.value);
-        //check email format(kickscar@gmil.com)
-        const re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-        setValidEmail(re.test(e.target.value));
-    }
-
-    return (
-        <form id="joinForm" name="joinForm" method="post" action="/do/not/post">
-            <label htmlFor="name">이름</label>
-            <input id="name" name="name" type="text" value={name} onChange={onChangeName}/>
-
-            <label htmlFor="email">이메일</label>
-            <input id="email" name="email" type="text" value={email} onChange={onChangeEmail}/>
-            { 
-                email === '' ? 
-                    null : 
-                    validEmail ? 
-                        <b>o</b> : 
-                        <b>x</b>            
-            }
-
-            <label htmlFor="password">패스워드</label>
-            <input id="password" name="password" type="password" value={password} onChange={e => setPassword(e.target.value)} />
-
-            <fieldset>
-                <legend>성별</legend>
-                <label>여</label> <input type="radio" name="gender" value={ "female" } defaultChecked={gender === 'female'} onChange={e => setGender(e.target.value)} />
-                <label>남</label> <input type="radio" name="gender" value={ "male" } defaultChecked={gender === 'male'} onChange={e => setGender(e.target.value)} />
-            </fieldset>
-
-            <label htmlFor="birthYear">생년</label>
-            <select
-                id="birthYear"
-                value={birthYear}
-                onChange={e => setBirthYear(e.target.value)}>
-                <option value=''>생년을 선택하세요</option>
-                <option value='1984'>1984년</option>
-                <option value='1985'>1985년</option>
-                <option value='1986'>1986년</option>
-                <option value='1987'>1987년</option>
-                <option value='1988'>1988년</option>
-                <option value='1989'>1989년</option>
-                <option value='1990'>1990년</option>
-            </select>
-
-            <label htmlFor="birthYear">자기소개</label>
-            <textarea/>
-
-            <fieldset>
-                <legend>약관동의</legend>
-                <input id="agree-prov" type="checkbox" name="agreeProv" value= { "yes" } defaultChecked={ false } />
-                <label>서비스 약관에 동의합니다.</label>
-            </fieldset>
-
-            <input type="submit" value="가입" />
-        </form>
-    );
-}
+:global(#root)          { height: 100%; width:100%; }
+form, fieldset,
+input, textarea         { border: 1px solid #ddd }
+form, fieldset          { text-align: left; padding: 10px }
+form                    { width:200px; margin: 10px auto; border-width: 2px; padding-top: 0 }
+label, legend           { font-weight: bold; }
+form > label,
+form > input,
+form > fieldset,
+form > textarea         { display: block; width:176px; outline: none }
+textarea                { height:50px; resize: none; padding:3px }
+form > label,
+form > fieldset,
+input[type='submit']    { cursor: pointer; margin-top:10px; }
+input[type='submit']:hover  { background-color: #61dafb }
+input[type='text'],
+input[type='password']  { padding: 3px; }
+input[type='submit']    { padding: 5px; }

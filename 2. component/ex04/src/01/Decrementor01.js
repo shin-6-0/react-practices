@@ -32,7 +32,7 @@ export default class extends Component{
               // this.val
               this.state.val
           }
-          </span>
+          </span> 
       </div>
   );
   }
