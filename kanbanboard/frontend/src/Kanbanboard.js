@@ -1,5 +1,6 @@
 import React from 'react';
 import data from './assets/json/data';
+import CardList from './CardList';
 
 function Kanbanboard(props) {
 
@@ -8,10 +9,8 @@ function Kanbanboard(props) {
 
     return (
         <div>
-            Kanbanboard
+            <CardList/>
         </div>
-            
-        
     );
 }
 
