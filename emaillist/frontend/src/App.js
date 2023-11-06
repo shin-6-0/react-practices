@@ -12,8 +12,8 @@ function App() {
         setEmails(newEmails);
     };
     
-    const addEmail=async (email) =>{
-        fetch('/api',{
+    const addEmail = async (email) =>{
+        const response = await fetch('/api',{
             method:'post',
             headers:{
                 'Content-Type': 'application/json', //get방식에는 필요없음
@@ -21,7 +21,19 @@ function App() {
             },
             body:JSON.stringify(email)
         });
-    }
+        if(!response.ok){
+            throw new Error(`${response.status} ${response.statusText}`);
+        }
+        const json = await response.json();//비동기에 await 선언
+
+        if(json.result!=='success'){
+            throw new Error(`${json.result} ${json.message}`)
+        }
+        const updateEmail=[json.data, ...emails];
+        console.log(json.data);
+
+        setEmails(updateEmail);
+    };
 
     const fetchList = async()=>{
         try{

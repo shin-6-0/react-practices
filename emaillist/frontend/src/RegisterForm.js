@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './assets/scss/RegisterForm.scss';
-import Email from './Email';
+//import Email from './Email';
 
-function RegisterForm(addEmail) {
+function RegisterForm({addEmail}) {
     return (
         <form 
             className={styles.RegisterForm}
@@ -13,8 +13,9 @@ function RegisterForm(addEmail) {
                     lastName: e.target.lastName.value,
                     email : e.target.email.value
                 };
-                
-                addEmail(Email);
+
+                addEmail(email);
+                console.log(email);
             }}>
             <input type='text' name='firstName' placeholder='성' className={styles.InputFirstName} />
             <input type='text' name='lastName' placeholder='이름' className={styles.InputLastName} />

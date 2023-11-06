@@ -10,12 +10,16 @@
         order by no desc
 		]]>
 	</select>
-
+	
+	
 	<insert id="insert" parameterType="emaillistvo">
 		<![CDATA[
 		insert
 		  into emaillist
 		values (null, #{firstName }, #{lastName }, #{email })
 		]]>
+		<selectKey resultType="long" keyProperty="no" order="AFTER">
+        	SELECT LAST_INSERT_ID()
+    	</selectKey>
 	</insert>
 </mapper>
