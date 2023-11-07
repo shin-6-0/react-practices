@@ -1,21 +1,24 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import styles from './assets/scss/RegisterForm.scss';
-//import Email from './Email';
 
 function RegisterForm({addEmail}) {
+    const refForm = useRef(null);
+
     return (
-        <form 
+        <form
+            ref={refForm}
             className={styles.RegisterForm}
-            onSubmit={(e)=>{
-                e.preventDefault(); //이벤트 막기 ?
-                const email ={
+            onSubmit={(e) => {
+                e.preventDefault();
+                
+                const email = {
                     firstName: e.target.firstName.value,
                     lastName: e.target.lastName.value,
-                    email : e.target.email.value
+                    email: e.target.email.value
                 };
 
                 addEmail(email);
-                console.log(email);
+                refForm.current.reset();
             }}>
             <input type='text' name='firstName' placeholder='성' className={styles.InputFirstName} />
             <input type='text' name='lastName' placeholder='이름' className={styles.InputLastName} />

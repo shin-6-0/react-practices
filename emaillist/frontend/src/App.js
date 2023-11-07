@@ -1,78 +1,79 @@
-import React, {useState,useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import './assets/scss/App.scss';
 import RegisterForm from './RegisterForm';
 import SearchBar from './SearchBar';
 import Emaillist from './Emaillist';
-//import data from './assets/json/data';
+// import data from './assets/json/data';
 
 function App() {
     const [emails, setEmails] = useState(null);
-    const searchEmail = (keyword) => {
-        const newEmails = data.filter(email => email.firstName.indexOf(keyword) !== -1 || email.lastName.indexOf(keyword) !== -1 || email.email.indexOf(keyword) !== -1);
-        setEmails(newEmails);
-    };
-    
-    const addEmail = async (email) =>{
-        const response = await fetch('/api',{
-            method:'post',
-            headers:{
-                'Content-Type': 'application/json', //get방식에는 필요없음
-                'Accept':'application/json',
-            },
-            body:JSON.stringify(email)
-        });
-        if(!response.ok){
-            throw new Error(`${response.status} ${response.statusText}`);
-        }
-        const json = await response.json();//비동기에 await 선언
 
-        if(json.result!=='success'){
-            throw new Error(`${json.result} ${json.message}`)
-        }
-        const updateEmail=[json.data, ...emails];
-        console.log(json.data);
+    const addEmail = async (email) => {
+        try {
+            const response = await fetch('/api', {
+                method: 'post',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(email)
+            });
 
-        setEmails(updateEmail);
-    };
+            if(!response.ok) {
+                throw new Error(`${response.status} ${response.statusText}`)
+            }
 
-    const fetchList = async()=>{
-        try{
-        const response = await fetch('/api', {
-            method:'get',
-            headers:{
-                'Content-Type': 'application/json', //get방식에는 필요없음
-                'Accept':'application/json',
-            },
-            body: null
-        });
-        if(!response.ok){
-            throw new Error(`${response.status} ${response.statusText}`)
-        }
+            const json = await response.json();
 
-        const json = await response.json();//비동기에 await 선언
-        
-        if(json.result!=='success'){
-            throw new Error(`${json.result} ${json.message}`)
-        }
+            if(json.result !== 'success') {
+                throw new Error(`${json.result} ${json.message}`)
+            }
 
-        console.log(json.data);
-        setEmails(json.data);
-        }catch(err){
+            setEmails([json.data, ...emails]);
+        } catch(err) {
             console.error(err);
         }
     }
 
-    useEffect(()=>{
-        fetchList();
-    },[])
+    const fetchEmails = async (keyword) => {
+        try {
+            const response = await fetch(`/api?kw=${keyword ? keyword : ''}`, {
+                method: 'get',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: null
+            });
+
+            if(!response.ok) {
+                throw new Error(`${response.status} ${response.statusText}`)
+            }
+
+            const json = await response.json();
+
+            if(json.result !== 'success') {
+                throw new Error(`${json.result} ${json.message}`)
+            }
+
+            setEmails(json.data);
+        } catch(err) {
+            console.error(err);
+        }
+    }
+
+    useEffect(() => {
+        fetchEmails();
+    }, []);
 
     return (
         <div id={'App'}>
-            <RegisterForm addEmail={addEmail}/>
-            <SearchBar searchEmail={searchEmail}/>
-            { emails === null?
-                null:
-                <Emaillist emails={emails} />}
+            <RegisterForm addEmail={addEmail} />
+            <SearchBar fetchEmails={fetchEmails}/>
+            { emails === null ?
+                null :
+                <Emaillist emails={emails} />
+            }
         </div>
     );
 }

@@ -12,13 +12,13 @@ import com.poscodx.emaillist.vo.EmaillistVo;
 public class EmaillistRepository {
 	
 	@Autowired
-	private SqlSession sqlSession ;
-	public List<EmaillistVo> findAll(){
-		return sqlSession.selectList("emaillist.findAll");
+	private SqlSession sqlSession;
+
+	public List<EmaillistVo> findAll(String keyword) {
+		return sqlSession.selectList("emaillist.findAll", keyword);
 	}
-	public EmaillistVo insert(EmaillistVo eVo) {
-		sqlSession.insert("emaillist.insert", eVo);
-		return eVo;
+
+	public Boolean insert(EmaillistVo vo) {
+		return sqlSession.insert("emaillist.insert", vo) == 1;
 	}
-	
 }
