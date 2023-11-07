@@ -1,10 +1,10 @@
-# kanbanboard: Frontend
+Kanbanboard: Frontend
 
 1.  설치
     1)  개발툴
-        $ npm i -D webpack webpack-cli webpack-dev-server css-loader style-loader sass-loader node-sass babel-loader @babel/core @babel/preset-env @babel/preset-react
+        $ npm i -D webpack webpack-cli webpack-dev-server css-loader style-loader sass-loader node-sass babel-loader @babel/core @babel/preset-env @babel/preset-react @babel/plugin-transform-runtime @babel/plugin-syntax-throw-expressions case-sensitive-paths-webpack-plugin
     2)  라이브러리
-        $ npm i react react-dom prop-types
+        $ npm i react react-dom prop-types react-addons-update
 
 2.  설정
     1)  webpack.config.js
@@ -12,9 +12,9 @@
 
 3.  스트립팅
     "scripts": {
-    "debug": "npx webpack serve --config config/webpack.config.js --progress --mode development",
-    "build": "npx webpack --config config/webpack.config.js --mode production"
-}
+        "debug": "npx webpack serve --progress",
+        "build": "npx webpack"
+    }
 
 4.  테스트 서버 실행
-    $ npm run debug 
+    $ npm run debug

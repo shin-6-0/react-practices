@@ -9,7 +9,7 @@ export default function About() {
         <Fragment>
             <Header/>
             <div className={styles.About}>
-                <h2>kickscar 입니다.</h2>
+                <h2>ShinYukyung 입니다.</h2>
             </div>
             <Navigation/>
             <Footer/>
