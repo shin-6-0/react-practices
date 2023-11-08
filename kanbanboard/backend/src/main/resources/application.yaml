@@ -20,7 +20,6 @@ spring:
       resources:
          # Locations of static resources
          static-locations: classpath:/assets/
-
    thymeleaf:
       prefix : classpath:templates/
       check-template-location: true
