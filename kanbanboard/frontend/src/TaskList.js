@@ -1,14 +1,13 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Task from './Task';
 import styles from './assets/css/TaskList.css';
 
 const TaskList = ({tasks}) => {
-
     return (
         <div>
             <ul>
                 {
-                    tasks.map(task => <Task
+                    tasks?.map(task => <Task
                                         key={task.no}
                                         no={task.no}                                        
                                         name={task.name}
