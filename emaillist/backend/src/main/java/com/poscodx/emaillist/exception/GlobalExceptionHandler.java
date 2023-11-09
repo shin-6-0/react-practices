@@ -20,6 +20,7 @@ public class GlobalExceptionHandler {
 	@ResponseBody
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<JsonResult> handlerException(Exception e) {
+		
 		// 로깅(Logging)
 		StringWriter errors = new StringWriter();
 		e.printStackTrace(new PrintWriter(errors));
@@ -30,7 +31,7 @@ public class GlobalExceptionHandler {
 				(e instanceof NoHandlerFoundException) ?
 						JsonResult.fail("Unknown Request") :
 						JsonResult.fail(errors.toString());
-
+		
 		return ResponseEntity
 				.status(HttpStatus.OK)
 				.body(jsonResult);
