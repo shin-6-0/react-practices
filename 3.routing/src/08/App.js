@@ -1,7 +1,6 @@
 import React from 'react';
 import {BrowserRouter as Router} from 'react-router-dom';
 import {Routes, Route} from 'react-router';
-
 import Main from "./component/Main";
 import Guestbook from "./component/Guestbook";
 import About from "./component/About";
