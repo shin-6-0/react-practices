@@ -19,31 +19,26 @@
 4.  테스트 서버 실행
     $ npm run debug 
 
-----Emaillist: Frontend
 
-1.  설치
-    1)  개발툴
-        $ npm i -D webpack webpack-cli webpack-dev-server css-loader style-loader sass-loader node-sass babel-loader @babel/core @babel/preset-env @babel/preset-react case-sensitive-paths-webpack-plugin @babel/plugin-transform-runtime @babel/plugin-syntax-throw-expressions concurrently
-    2)  라이브러리
-        $ npm i react react-dom prop-types react-addons-update
-
-2.  설정
-    1)  webpack.config.js
-    2)  babel.config.json
-
-3.  스트립팅
-    "scripts": {
-        "debug": "npx webpack serve --progress",
-        "build": "npx webpack"
-    }
-
-4.  테스트 서버 실행
-    $ npm run debug
 
 
 
 
 -------------------------
+
+1.  backend
+    1)  테스트(개발 모드)
+        eclipse ctrl+f11 (스프링부트 애플리케이션 실행)
+
+    2)  빌드(서버배포)
+        # mvn -f emaillist/backend exec:exec clean package
+
+    3)  빌드(서버배포) 테스트
+        # java -Dspring.profiles.active=production -jar emaillist/backend/target/emaillist.jar 
+
+2. frontend
+
+
 3-1. deploy: ssh 연결(ssh key 인증)
     1) key 생성하기
          ssh-keygen -t rsa -b 2048 -m PEM -C "cheerup313@naver.com"
@@ -63,4 +58,4 @@
    1) 실행서버(ssh Server) 등록 : springboot-publish-server
    2) 프로젝트의 빌드 후 조치(post-build action)의 send build artifacts over ssh설정
       1) emaillist.jar: transfer
-    
+      2) launch.sh: transfer +execution 
