@@ -1,10 +1,10 @@
 # active spring boot profile
 spring:
    application:
-       name: kanbanboard
+       name: kanbanboard	
    profiles:
       active: development
-# profile구분시 --- 사용
+
 
 
 ---
@@ -20,6 +20,7 @@ spring:
       resources:
          # Locations of static resources
          static-locations: classpath:/assets/
+
    thymeleaf:
       prefix : classpath:templates/
       check-template-location: true
@@ -66,7 +67,6 @@ server:
          enabled: true
          
 ---
-
 # production profile: spring boot configuration
 spring:
    config:
