@@ -39,3 +39,28 @@
 
 4.  테스트 서버 실행
     $ npm run debug
+
+
+
+
+-------------------------
+3-1. deploy: ssh 연결(ssh key 인증)
+    1) key 생성하기
+         ssh-keygen -t rsa -b 2048 -m PEM -C "cheerup313@naver.com"
+    2) key 생성 확인
+       1) private key(개인키) : ~/.ssh/id_rsa
+       2) public key(공개키) : ~/.ssh/id_rsa.pub
+    3) 공개키를 서버에 설치하기
+       1) mv ~/.ssh/id_rsa.pub ~/.ssh/authorized_keys
+    4) private key 잘 저장하기
+   
+    5) 접속 테스트
+        # ssh -i mykey.pem root@192.168.0.92
+
+3-2. deploy: Publish Over SSH 플러그인(Jenkins)
+1) Public Over SSH 플러그인 설치
+2) Dashboard > Jenkins 관리 > System
+   1) 실행서버(ssh Server) 등록 : springboot-publish-server
+   2) 프로젝트의 빌드 후 조치(post-build action)의 send build artifacts over ssh설정
+      1) emaillist.jar: transfer
+    
